@@ -17,7 +17,6 @@ docker run -d -it\
         -e TLG_CHAT_ID=YOUR_CHAT_ID\
         -e PIK_LOGIN=YOUR_PIK_LOGIN\
         -e PIK_PASSWORD=YOUR_PIK_PASSWORD\
-        -e DATA_DIR=OPTIONAL_PATH_TO_DATA_WITHIN_CONTAINER\
         -e MODE=single\
         -e DELAY=600\
         --name $IMAGE\
