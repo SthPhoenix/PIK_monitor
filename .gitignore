@@ -4,5 +4,6 @@
 /data/progress.json
 /data/timemsg.json
 /data/token.json
+/data/log.txt
 deploy.sh
 get_chat_id.py

@@ -33,6 +33,6 @@ def compare(a, b):
     keys = set(a.keys()).union(set(b.keys()))
     diff = []
     for key in keys:
-        if a.get(key, 'null') != b.get(key, 'null'):
-            diff.append(key)
+            if a.get(key) != b.get(key, 'null'):
+                diff.append(key)
     return diff

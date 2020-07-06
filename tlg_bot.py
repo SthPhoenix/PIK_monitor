@@ -88,7 +88,18 @@ class Checker(object):
         self.credentials = credentials
         self.silent = silent
         self.folder = folder
+        self.logs = os.path.join(self.folder,'log.txt')
         self.bot = TelegramSender(self.credentials.auth_token, self.credentials.chat_id, folder)
+
+    def log_changes(self, diffs, old, new):
+        fl =  open(self.logs, mode='a')
+        for diff in diffs:
+            log_string = "{}: {} -> {}".format(diff, old.get(diff), new.get(diff))
+            print(log_string)
+            fl.write(log_string+'\n')
+        fl.close()
+
+
 
     def check(self):
         # Логинимся и получаем данные
@@ -110,6 +121,7 @@ class Checker(object):
                     init = True
                 diffs = compare(initial_data, new_data)
                 if diffs:
+                    self.log_changes(diffs, initial_data, new_data)
                     print('Обнаружены изменения!')
                     print(diffs)
                     changes.append({'label': label, 'values': diffs})
