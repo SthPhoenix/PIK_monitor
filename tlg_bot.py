@@ -103,7 +103,8 @@ class Checker(object):
                 path = os.path.join(folder, params['file'])
 
                 initial_data = flatten(load_data(path), reducer='dot')
-                new_data = flatten(getattr(pik_data, params['new_data']), reducer='dot')
+                new_data_raw = getattr(pik_data, params['new_data'])
+                new_data = flatten(new_data_raw, reducer='dot')
 
                 if not initial_data:
                     init = True
@@ -112,7 +113,7 @@ class Checker(object):
                     print('Обнаружены изменения!')
                     print(diffs)
                     changes.append({'label': label, 'values': diffs})
-                    # dump_data(params['new_data'], path)
+                    dump_data(new_data_raw, path)
                 else:
                     print('    Изменений нет!')
             except Exception as e:
